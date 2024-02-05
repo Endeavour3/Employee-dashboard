@@ -85,7 +85,6 @@ function DisplayEmployeeDetails(props) {
                         })
                     }
                     <DisplayAndEditButtons
-                        // employeeToEdit={employeeToEdit}
                         employees={props.employees}
                         setEmployess={props.setEmployess}
                         selectedEmployee={props.selectedEmployee}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ToolBar from './ToolBar';
 import EmployeesList from './EmployeesList';
@@ -7,98 +7,134 @@ import ViewDiv from './ViewDiv';
 
 
 const EmployeesDashboard = () => {
-    const [departments, setDepartments] = useState([
-        {
-            deptId: 1,
-            deptName: "Information Technology"
-        },
-        {
-            deptId: 2,
-            deptName: "Human Resources"
-        },
-        {
-            deptId: 3,
-            deptName: "Engineering"
-        },
-        {
-            deptId: 4,
-            deptName: "Quality Assurance"
-        },
-        {
-            deptId: 5,
-            deptName: "Finance and Accounting"
-        }
-    ])
-
-    // const departments = [
+    // const [departments, setDepartments] = useState([
     //     {
-    //         deptId: 1,
-    //         deptName: "Information Technology",
-    //         designations: [
-    //             {
-    //                 designationId: 1,
-    //                 designation: "Chief Technology Officer"
-    //             },
-    //             {
-    //                 designationId: 2,
-    //                 designation: "System Administrator"
-    //             },
-    //             {
-    //                 designationId: 3,
-    //                 designation: "Network Administrator"
-    //             }
-    //         ]
+    //         "deptId": 1,
+    //         "deptName": "Information Technology"
     //     },
     //     {
-    //         deptId: 2,
-    //         deptName: "Human Resources",
-    //         designations: [
+    //         "deptId": 2,
+    //         "deptName": "Human Resources"
+    //     },
+    //     {
+    //         "deptId": 3,
+    //         "deptName": "Engineering"
+    //     },
+    //     {
+    //         "deptId": 4,
+    //         "deptName": "Quality Assurance"
+    //     },
+    //     {
+    //         "deptId": 5,
+    //         "deptName": "Finance and Accounting"
+    //     }
+    // ])
+
+    // const [employees, setEmployess] = useState([
+    //     {
+    //         "empId": 1,
+    //         "empName": "Ashutosh Verulkar",
+    //         "empSalary": "20000",
+    //         "empDesignation": "Developer",
+    //         "empDept": 3
+    //     },
+    //     {
+    //         "empId": 2,
+    //         "empName": "Nikhilesh Mane",
+    //         "empSalary": "30000",
+    //         "empDesignation": "Team Lead",
+    //         "empDept": 2
+    //     },
+    //     {
+    //         "empId": 3,
+    //         "empName": "Harshal Dhokane",
+    //         "empSalary": "37000",
+    //         "empDesignation": "Developer",
+    //         "empDept": 3
+    //     },
+    //     {
+    //         "empId": 4,
+    //         "empName": "Sanket Gupta",
+    //         "empSalary": "45000",
+    //         "empDesignation": "Data Engineer",
+    //         "empDept": 1
+    //     },
+    //     {
+    //         "empId": 5,
+    //         "empName": "Abhishek Chopade",
+    //         "empSalary": "45000",
+    //         "empDesignation": "Tester",
+    //         "empDept": 4
+    //     }
+    // ])
+
+
+    // {
+    //     "departments": [
+    //         {
+    //             "deptId": 1,
+    //             "deptName": "Information Technology"
+    //         },
+    //         {
+    //             "deptId": 2,
+    //             "deptName": "Human Resources"
+    //         },
+    //         {
+    //             "deptId": 3,
+    //             "deptName": "Engineering"
+    //         },
+    //         {
+    //             "deptId": 4,
+    //             "deptName": "Quality Assurance"
+    //         },
+    //         {
+    //             "deptId": 5,
+    //             "deptName": "Finance and Accounting"
+    //         }
+    //     ],
+
+    //         "employees": [
     //             {
-    //                 designationId: 1,
-    //                 designation: "HR Director"
+    //                 "empId": 1,
+    //                 "empName": "Ashutosh Verulkar",
+    //                 "empSalary": "20000",
+    //                 "empDesignation": "Developer",
+    //                 "empDept": 3
     //             },
     //             {
-    //                 designationId: 2,
-    //                 designation: "HR Manager"
+    //                 "empId": 2,
+    //                 "empName": "Nikhilesh Mane",
+    //                 "empSalary": "30000",
+    //                 "empDesignation": "Team Lead",
+    //                 "empDept": 2
     //             },
     //             {
-    //                 designationId: 3,
-    //                 designation: "Talent Acquisition Manager"
+    //                 "empId": 3,
+    //                 "empName": "Harshal Dhokane",
+    //                 "empSalary": "37000",
+    //                 "empDesignation": "Developer",
+    //                 "empDept": 3
+    //             },
+    //             {
+    //                 "empId": 4,
+    //                 "empName": "Sanket Gupta",
+    //                 "empSalary": "45000",
+    //                 "empDesignation": "Data Engineer",
+    //                 "empDept": 1
+    //             },
+    //             {
+    //                 "empId": 5,
+    //                 "empName": "Abhishek Chopade",
+    //                 "empSalary": "45000",
+    //                 "empDesignation": "Tester",
+    //                 "empDept": 4
     //             }
     //         ]
-    //     }
-    // ]
+    // }
 
-    const [employees, setEmployess] = useState([
-        {
-            empId: 1,
-            empName: "Ashutosh Verulkar",
-            empSalary: "20000",
-            empDesignation: "Developer",
-            empDept: departments[2].deptId
-        },
-        {
-            empId: 2,
-            empName: "Nikhilesh Mane",
-            empSalary: "30000",
-            empDesignation: "Team Lead",
-            empDept: departments[1].deptId
-        },
-        {
-            empId: 3,
-            empName: "Harshal Dhokane",
-            empSalary: "37000",
-            empDesignation: "Developer",
-            empDept: departments[2].deptId
-        },
-        {
-            empId: 4,
-            empName: "Sanket Gupta",
-            empSalary: "45000",
-            empDesignation: "Data Engineer",
-            empDept: departments[0]?.deptId
-        }
-    ])
+    const [departments, setDepartments] = useState([])
+
+    const [employees, setEmployess] = useState([])
 
     const [selectedEmployee, setSelectedEmployee] = useState({})
 
@@ -111,12 +147,41 @@ const EmployeesDashboard = () => {
     const [sortOrder, setSortOrder] = useState('')
 
     const [employeeToRegister, setEmployeeToRegister] = useState({
-        empId: Number(employees[employees.length - 1].empId) + 1,
-        empName: '',
-        empSalary: '',
-        empDesignation: '',
-        empDept: ''
+        "empId": employees.length > 0 ? Number(employees[employees.length - 1].empId) + 1 : 1,
+        "empName": '',
+        "empSalary": '',
+        "empDesignation": '',
+        "empDept": ''
     })
+
+    const fetchData = () => {
+        return fetch('https://2c8fdf7ff75742938b00fb56fdf922b0.api.mockbin.io/')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                return response.json();
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                throw error;
+            });
+    };
+
+    useEffect(() => {
+        const fetchDataFromApi = () => {
+            fetchData()
+                .then((data) => {
+                    setEmployess(data.employees);
+                    setDepartments(data.departments);
+                })
+                .catch((error) => {
+                    console.error('Error fetching employee data:', error);
+                });
+        };
+
+        fetchDataFromApi();
+    }, []);
 
     function addEmployeeAndSelectEmployeeHandler() {
         if (employeeToRegister.empName === '' && employeeToRegister.empSalary === '') {

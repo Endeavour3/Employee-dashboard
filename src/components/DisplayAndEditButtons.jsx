@@ -85,16 +85,16 @@ function editEmployee(employees, setEmployess, selectedEmployee, setSelectedEmpl
     
     setEmployess(updatedEmployees);
     
-    setSelectedEmployee({})
+    setSelectedEmployee({});
     
-    setEditFlag(false)
+    setEditFlag(false);
 }
 
 function deleteEmployee(employees, setEmployess, selectedEmployee, setSelectedEmployee, setDelEmpFlag) {
     const updatedEmployees = employees.filter(employee => employee.empId !== selectedEmployee.empId);
     setEmployess(updatedEmployees);
     setSelectedEmployee({});
-    setDelEmpFlag(false)
+    setDelEmpFlag(false);
 }
 
 export default DisplayAndEditButtons;
